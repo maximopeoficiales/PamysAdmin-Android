@@ -42,7 +42,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getName();
     public final CompositeDisposable disposables = new CompositeDisposable();
-    public ProductService productService = new ProductService();
+
     public AuthService authService = new AuthService();
     public Context context;
 
@@ -190,30 +190,5 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
-    public void getProducts() {
-        productService.getProducts().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.rxjava3.core.Observer<List<Product>>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        disposables.add(d);
-                    }
 
-                    @Override
-                    public void onNext(@NonNull List<Product> products) {
-                        Alert.showMessageSuccess(context, "Existen " + products.size() + " Products");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.d(TAG, "Estoy en onERROR");
-                        Alert.showMessageError(context, "Ocurrio un error" + e.getMessage() + " PRoductos");
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 }
