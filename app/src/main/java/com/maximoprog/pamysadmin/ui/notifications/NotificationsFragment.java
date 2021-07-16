@@ -19,6 +19,7 @@ import com.maximoprog.pamysadmin.databinding.FragmentNotificationsBinding;
 import com.maximoprog.pamysadmin.enviroments.Credentials;
 import com.maximoprog.pamysadmin.models.Product;
 import com.maximoprog.pamysadmin.utils.Alert;
+import com.maximoprog.pamysadmin.utils.HandlerUtilitity;
 import com.squareup.picasso.Picasso;
 
 import java.util.Comparator;
@@ -45,6 +46,8 @@ public class NotificationsFragment extends Fragment {
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         context = container.getContext();
+        binding.infoOpenLottie.setVisibility(View.VISIBLE);
+        binding.cardContenedorInfo.setVisibility(View.GONE);
         getProducts();
 
         return binding.getRoot();
@@ -68,8 +71,16 @@ public class NotificationsFragment extends Fragment {
 
                         assert productMayor != null;
 //                        Alert.showMessageSuccess(context, "  " + productMayor.getStock());
-                        cargarProducts(productMayor,productMenor);
-                        Alert.showMessageSuccess(context, "Carga Exitosa");
+                        HandlerUtilitity.setTimeOut(new Runnable() {
+                            @Override
+                            public void run() {
+                                cargarProducts(productMayor, productMenor);
+                                binding.infoOpenLottie.setVisibility(View.GONE);
+                                binding.cardContenedorInfo.setVisibility(View.VISIBLE);
+                                Alert.showMessageSuccess(context, "Carga Exitosa");
+                            }
+                        }, Credentials.TIMER);
+
                     }
 
                     @Override
@@ -109,10 +120,10 @@ public class NotificationsFragment extends Fragment {
                 .fit().into(binding.imageViewProductMenor);
 
         binding.mayorStockNameProduct.setText(productMayor.getName());
-        binding.mayorStockValueProduct.setText("Stock: "+ productMayor.getStock());
+        binding.mayorStockValueProduct.setText("Stock: " + productMayor.getStock());
 
         binding.menorStockNameProduct.setText(productMenor.getName());
-        binding.menorStockValueProduct.setText("Stock: "+ productMenor.getStock());
+        binding.menorStockValueProduct.setText("Stock: " + productMenor.getStock());
 
 
     }

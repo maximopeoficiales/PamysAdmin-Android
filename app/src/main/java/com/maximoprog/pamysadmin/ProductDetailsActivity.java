@@ -167,6 +167,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     public void redirectHomeFragment() {
+//        FragmentManager manager = getFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.replace(R.id.container,new Fragment(),null);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+
+        finish();
 
     }
 }

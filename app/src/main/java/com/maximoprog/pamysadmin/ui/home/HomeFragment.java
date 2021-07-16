@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.maximoprog.pamysadmin.ProductDetailsActivity;
 import com.maximoprog.pamysadmin.api.services.ProductService;
 import com.maximoprog.pamysadmin.databinding.FragmentHomeBinding;
+import com.maximoprog.pamysadmin.enviroments.Credentials;
 import com.maximoprog.pamysadmin.models.Product;
 import com.maximoprog.pamysadmin.ui.adapters.ProductAdapter;
 import com.maximoprog.pamysadmin.utils.Alert;
+import com.maximoprog.pamysadmin.utils.HandlerUtilitity;
 
 import java.util.List;
 
@@ -47,17 +49,12 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
 //        View root = inflater.inflate(R.layout.fragment_home, container, false);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding.homeOpenLottie.setVisibility(View.VISIBLE);
+        binding.productoRV.setVisibility(View.GONE);
         context = container.getContext();
 
         cargarAdapter();
-
-//        HandlerUtilitity.setTimeOut(new Runnable() {
-//            @Override
-//            public void run() {
-        //        obtengo todas la noticias
         getProducts();
-//            }
-//        }, Credentials.TIMER);
         return binding.getRoot();
     }
 
@@ -103,8 +100,16 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<Product> products) {
                         productAdapter.addProducts(products);
+                        HandlerUtilitity.setTimeOut(new Runnable() {
+                            @Override
+                            public void run() {
+                                Alert.showMessageSuccess(context, "Existen " + products.size() + " Productos");
+                                binding.productoRV.setVisibility(View.VISIBLE);
+                                binding.homeOpenLottie.setVisibility(View.GONE);
 
-                        Alert.showMessageSuccess(context, "Existen " + products.size() + " Productos");
+                            }
+                        }, Credentials.TIMER);
+
                     }
 
                     @Override
@@ -118,5 +123,11 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
+    }
+
+    @Override
+    public void onResume() {
+        getProducts();
+        super.onResume();
     }
 }
