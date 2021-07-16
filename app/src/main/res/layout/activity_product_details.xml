@@ -69,28 +69,34 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="71dp"
+        android:layout_marginLeft="71dp"
         android:layout_marginTop="8dp"
         android:text="Precio"
-        app:layout_constraintTop_toBottomOf="@+id/stockInput"
-        tools:layout_editor_absoluteX="71dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stockInput" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="8dp"
         android:text="Precio de Venta"
-        app:layout_constraintTop_toBottomOf="@+id/priceInput"
-        tools:layout_editor_absoluteX="72dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priceInput" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
         android:layout_marginTop="8dp"
         android:text="Descripcion"
-        app:layout_constraintTop_toBottomOf="@+id/salePriceInput"
-        tools:layout_editor_absoluteX="73dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/salePriceInput" />
 
     <EditText
         android:id="@+id/stockInput"
@@ -107,19 +113,23 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="8dp"
         android:text="Stock"
-        app:layout_constraintTop_toBottomOf="@+id/nameInput"
-        tools:layout_editor_absoluteX="72dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="32dp"
         android:text="Name"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="72dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/actualizarProductoBtn"
@@ -128,7 +138,8 @@
         android:layout_marginTop="24dp"
         android:text="Guardar"
         app:icon="@drawable/ic_baseline_save_24"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionInput"
-        tools:layout_editor_absoluteX="128dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
