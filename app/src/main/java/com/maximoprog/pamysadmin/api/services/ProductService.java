@@ -24,6 +24,9 @@ public class ProductService {
     public Observable<Product> save(Product product) {
         return repository.save(product);
     }
+    public Observable<String> delete(Integer idProduct) {
+        return repository.deleteProductById(idProduct);
+    }
 
     public Observable<Product> update(Product product) {
         return repository.update(product);

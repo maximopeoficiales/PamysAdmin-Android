@@ -53,13 +53,13 @@ public class HomeFragment extends Fragment {
 
         cargarAdapter();
 
-        HandlerUtilitity.setTimeOut(new Runnable() {
-            @Override
-            public void run() {
+//        HandlerUtilitity.setTimeOut(new Runnable() {
+//            @Override
+//            public void run() {
                 //        obtengo todas la noticias
                 getProducts();
-            }
-        }, Credentials.TIMER);
+//            }
+//        }, Credentials.TIMER);
         return binding.getRoot();
     }
 

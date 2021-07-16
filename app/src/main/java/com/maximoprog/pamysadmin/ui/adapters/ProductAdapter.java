@@ -48,7 +48,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
 
         Picasso.with(context)
-                .load(urlImagen)
+                .load(urlImagen).placeholder(R.mipmap.ic_pamys_launcher_background)
                 .fit().into(holder.productImageView);
         holder.bind(productList.get(position), this.onItemClickListener);
     }
