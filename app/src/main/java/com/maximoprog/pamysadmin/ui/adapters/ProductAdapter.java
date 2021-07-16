@@ -2,6 +2,7 @@ package com.maximoprog.pamysadmin.ui.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
     private Context context;
     private List<Product> productList;
     private OnItemClickListener onItemClickListener;
@@ -51,6 +52,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 .load(urlImagen).placeholder(R.mipmap.ic_pamys_launcher_background)
                 .fit().into(holder.productImageView);
         holder.bind(productList.get(position), this.onItemClickListener);
+
     }
 
     @Override
@@ -58,11 +60,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return productList.size();
     }
 
+
     public void addProducts(List<Product> products) {
 //        newArrayList.clear();
         productList.addAll(products);
         notifyDataSetChanged();
     }
+
 
     //    implementacion sencilla
     public interface OnItemClickListener {

@@ -1,9 +1,12 @@
 package com.maximoprog.pamysadmin.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class User implements Parcelable {
     @Expose
     @SerializedName("role")
     private Role role;
@@ -147,4 +150,73 @@ public class User {
     public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.role, flags);
+        dest.writeInt(this.idRol);
+        dest.writeByte(this.active ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.zip_code);
+        dest.writeString(this.email);
+        dest.writeString(this.phone);
+        dest.writeString(this.profilePictureUrl);
+        dest.writeString(this.address);
+        dest.writeString(this.lastName);
+        dest.writeString(this.firstName);
+        dest.writeString(this.password);
+        dest.writeString(this.username);
+        dest.writeInt(this.idClient);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.role = source.readParcelable(Role.class.getClassLoader());
+        this.idRol = source.readInt();
+        this.active = source.readByte() != 0;
+        this.zip_code = source.readInt();
+        this.email = source.readString();
+        this.phone = source.readString();
+        this.profilePictureUrl = source.readString();
+        this.address = source.readString();
+        this.lastName = source.readString();
+        this.firstName = source.readString();
+        this.password = source.readString();
+        this.username = source.readString();
+        this.idClient = source.readInt();
+    }
+
+    public User() {
+    }
+
+    protected User(Parcel in) {
+        this.role = in.readParcelable(Role.class.getClassLoader());
+        this.idRol = in.readInt();
+        this.active = in.readByte() != 0;
+        this.zip_code = in.readInt();
+        this.email = in.readString();
+        this.phone = in.readString();
+        this.profilePictureUrl = in.readString();
+        this.address = in.readString();
+        this.lastName = in.readString();
+        this.firstName = in.readString();
+        this.password = in.readString();
+        this.username = in.readString();
+        this.idClient = in.readInt();
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

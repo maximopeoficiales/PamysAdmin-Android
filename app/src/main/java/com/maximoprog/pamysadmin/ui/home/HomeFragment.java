@@ -16,14 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.maximoprog.pamysadmin.ProductDetailsActivity;
-import com.maximoprog.pamysadmin.R;
 import com.maximoprog.pamysadmin.api.services.ProductService;
 import com.maximoprog.pamysadmin.databinding.FragmentHomeBinding;
-import com.maximoprog.pamysadmin.enviroments.Credentials;
 import com.maximoprog.pamysadmin.models.Product;
 import com.maximoprog.pamysadmin.ui.adapters.ProductAdapter;
 import com.maximoprog.pamysadmin.utils.Alert;
-import com.maximoprog.pamysadmin.utils.HandlerUtilitity;
 
 import java.util.List;
 
@@ -37,11 +34,12 @@ public class HomeFragment extends Fragment {
     public final CompositeDisposable disposables = new CompositeDisposable();
     public ProductService productService = new ProductService();
     public Context context;
+    public ProductAdapter productAdapter;
+    //    products
     FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
     //    adaptador
     private RecyclerView recyclerView;
-    public ProductAdapter productAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,8 +54,8 @@ public class HomeFragment extends Fragment {
 //        HandlerUtilitity.setTimeOut(new Runnable() {
 //            @Override
 //            public void run() {
-                //        obtengo todas la noticias
-                getProducts();
+        //        obtengo todas la noticias
+        getProducts();
 //            }
 //        }, Credentials.TIMER);
         return binding.getRoot();
@@ -84,6 +82,7 @@ public class HomeFragment extends Fragment {
         this.binding.productoRV.setItemAnimator(new DefaultItemAnimator());
     }
 
+
     @Override
     public void onDestroy() {
         if (disposables != null) {
@@ -104,6 +103,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onNext(@io.reactivex.rxjava3.annotations.NonNull List<Product> products) {
                         productAdapter.addProducts(products);
+
                         Alert.showMessageSuccess(context, "Existen " + products.size() + " Productos");
                     }
 
