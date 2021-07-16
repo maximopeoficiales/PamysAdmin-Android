@@ -23,7 +23,7 @@ public interface IProductsRepository {
     Observable<Product> getProductById(@Path("idProduct") int idProduct);
 
     @DELETE(Credentials.URI_PRODUCTS + "/{idProduct}")
-    Observable<String> deleteProductById(@Path("idProduct") int idProduct);
+    Observable<Product> deleteProductById(@Path("idProduct") int idProduct);
 
     @POST(Credentials.URI_PRODUCTS)
     Observable<Product> save(@Body Product product);

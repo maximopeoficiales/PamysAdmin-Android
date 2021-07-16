@@ -23,6 +23,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class ProductDetailsActivity extends AppCompatActivity {
     private static final String TAG = ProductDetailsActivity.class.getName();
     public final CompositeDisposable disposables = new CompositeDisposable();
+    public final CompositeDisposable disposables2 = new CompositeDisposable();
     public ProductService productService = new ProductService();
     ActivityProductDetailsBinding binding;
     private Product product;
@@ -72,12 +73,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         .subscribe(new Observer<Product>() {
                             @Override
                             public void onSubscribe(@NonNull Disposable d) {
-
+                                disposables.add(d);
                             }
 
                             @Override
                             public void onNext(@NonNull Product product) {
                                 Alert.showMessageSuccess(context, "Producto actualizado correctamente");
+                                redirectHomeFragment();
                             }
 
                             @Override
@@ -90,6 +92,42 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                             }
                         });
+            }
+        });
+
+
+        binding.eliminarProductoBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+                productService.delete(product.getIdProduct()).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<Product>() {
+                                       @Override
+                                       public void onSubscribe(@NonNull Disposable d) {
+                                           disposables2.add(d);
+
+                                       }
+
+                                       @Override
+                                       public void onNext(@NonNull Product product) {
+                                           Alert.showMessageSuccess(context, "Producto Eliminado correctamente");
+                                           redirectHomeFragment();
+                                       }
+
+                                       @Override
+                                       public void onError(@NonNull Throwable e) {
+                                           Alert.showMessageError(context, "Error: " + e.getMessage());
+
+                                       }
+
+                                       @Override
+                                       public void onComplete() {
+
+                                       }
+                                   }
+                        );
             }
         });
     }
@@ -117,4 +155,18 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onDestroy() {
+        if (disposables != null) {
+            disposables.clear();
+        }
+        if (disposables2 != null) {
+            disposables2.clear();
+        }
+        super.onDestroy();
+    }
+
+    public void redirectHomeFragment() {
+
+    }
 }

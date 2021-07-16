@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Editar Producto"
         android:textSize="24sp"
@@ -34,36 +34,51 @@
         android:id="@+id/descriptionInput"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="71dp"
+        android:layout_marginLeft="71dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginRight="68dp"
         android:ems="10"
         android:hint="Ingresa la descripcion"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:layout_editor_absoluteX="71dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/priceInput"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginRight="67dp"
         android:ems="10"
         android:hint="Ingresa el precio"
         android:inputType="number|numberDecimal"
         android:numeric="decimal"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:layout_editor_absoluteX="72dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
         android:id="@+id/salePriceInput"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginRight="67dp"
         android:ems="10"
         android:hint="Ingresa el Precio de Venta"
         android:inputType="number|numberDecimal"
         android:numeric="decimal"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        tools:layout_editor_absoluteX="72dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView4"
@@ -102,12 +117,17 @@
         android:id="@+id/stockInput"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginRight="66dp"
         android:ems="10"
         android:hint="Ingresa el Stock"
         android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:layout_editor_absoluteX="73dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView3"
@@ -141,5 +161,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionInput" />
+
+    <Button
+        android:id="@+id/eliminarProductoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#B82424"
+        android:text="Eliminar"
+        app:icon="@drawable/ic_baseline_delete_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actualizarProductoBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
