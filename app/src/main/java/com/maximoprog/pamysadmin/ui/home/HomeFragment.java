@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     //    adaptador
     private RecyclerView recyclerView;
-    private ProductAdapter productAdapter;
+    public ProductAdapter productAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -67,14 +67,14 @@ public class HomeFragment extends Fragment {
         productAdapter = new ProductAdapter(context, new ProductAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Product product, int position) {
-//                onClickItem(position);
-                Intent intent = new Intent(
+                Intent intentProduct = new Intent(
                         context, ProductDetailsActivity.class
                 );
 //                le pasa el item osea el objecto como parametro
-                intent.putExtra("product", product);
+                intentProduct.putExtra("product", product);
 //                inicia la actividad
-                startActivity(intent);
+                Alert.showMessageSuccess(context, product.getName());
+                startActivity(intentProduct);
             }
         });
         this.binding.productoRV.setHasFixedSize(true);

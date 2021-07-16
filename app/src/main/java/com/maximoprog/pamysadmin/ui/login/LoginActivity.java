@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,13 +24,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.maximoprog.pamysadmin.MainActivity;
 import com.maximoprog.pamysadmin.R;
 import com.maximoprog.pamysadmin.api.services.AuthService;
-import com.maximoprog.pamysadmin.api.services.ProductService;
 import com.maximoprog.pamysadmin.models.AuthBody;
 import com.maximoprog.pamysadmin.models.AuthResponse;
 import com.maximoprog.pamysadmin.models.Product;
 import com.maximoprog.pamysadmin.utils.Alert;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -61,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -138,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        getProducts();
     }
 
     private void loginAuth() {
@@ -157,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(@NonNull AuthResponse authResponse) {
-                        Alert.showMessageSuccess(context, "jwt: " + authResponse.getJwt());
+                        Alert.showMessageSuccess(context, "Bienvenido: " + authResponse.getUser().getFirstName() + " " + authResponse.getUser().getLastName());
                         loadingProgressBar.setVisibility(View.GONE);
                         Intent intent = new Intent(
                                 context, MainActivity.class

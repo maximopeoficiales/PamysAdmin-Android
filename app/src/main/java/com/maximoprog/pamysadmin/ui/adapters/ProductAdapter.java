@@ -98,6 +98,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(product, getAdapterPosition());
+
                 }
             });
         }
