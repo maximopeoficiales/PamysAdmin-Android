@@ -40,32 +40,40 @@ public class DashboardFragment extends Fragment {
         binding.guardarProductoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Product product = getDataForm();
-                productService.save(product).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<Product>() {
-                            @Override
-                            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
-                                disposables.add(d);
-                            }
+                if (binding.nameInput.getText().toString().equals("") || binding.descriptionInput.getText().toString().equals("")
+                        || binding.stockInput.getText().toString().equals("") || binding.priceInput.getText().toString().equals("")
+                        || binding.salePriceInput.getText().toString().equals("")) {
+                    Alert.showMessageError(context, "Error: Por favor rellenar todos los campos");
 
-                            @Override
-                            public void onNext(@io.reactivex.rxjava3.annotations.NonNull Product product) {
-                                Alert.showMessageSuccess(context, "Creacion exitosa del producto");
-                            }
+                } else {
+                    Product product = getDataForm();
+                    productService.save(product).subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<Product>() {
+                                @Override
+                                public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+                                    disposables.add(d);
+                                }
 
-                            @Override
-                            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                                Log.d(TAG, "Estoy en la creacion de Producto");
-                                Alert.showMessageError(context, "Error: " + e.getMessage());
+                                @Override
+                                public void onNext(@io.reactivex.rxjava3.annotations.NonNull Product product) {
+                                    Alert.showMessageSuccess(context, "Creacion exitosa del producto");
+                                }
 
-                            }
+                                @Override
+                                public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                                    Log.d(TAG, "Estoy en la creacion de Producto");
+                                    Alert.showMessageError(context, "Error: " + e.getMessage());
 
-                            @Override
-                            public void onComplete() {
+                                }
 
-                            }
-                        });
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
+                }
 
             }
         });
